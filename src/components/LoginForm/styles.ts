@@ -1,4 +1,5 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import styled from "styled-components";
 import { Props } from '.';
 
@@ -11,11 +12,13 @@ export const StyledButtonSubmit = styled(Button)`
     margin: 24px 0px 16px !important;
 `;
 
-export const StyledTypography = styled(Typography)<Props>`
-    display: hidden;
+export const StyledAlert = styled(Alert)`
+
+    &.hidden {
+        display: none !important;
+    }
     
-    &:error {
-        display: block;
-        color: var(--rocketseat) !important;
+    &.error {
+        display: flex !important;
     }
 `;

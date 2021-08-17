@@ -1,10 +1,9 @@
-import { Box, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Link, TextField } from '@material-ui/core';
 import Copyright from '../Copyright';
 import React, { useState } from 'react';
 
-import { StyledButtonSubmit, StyledForm } from './styles'; 
+import { StyledAlert, StyledButtonSubmit, StyledForm } from './styles'; 
 import api from '../../services/api';
-import { StyledTypography } from './styles';
 
 export interface Props {
     error?: string;
@@ -23,6 +22,9 @@ const LoginForm: React.FC<Props> = ({
         try {
             const response = await api.post('/user/login', {email: email, password: password});
             console.log(response);
+            if (response.status === 200){
+                setLogin(response.data.message);
+            }
         } catch(err) { 
             console.log(err);   
             setLogin('Error');
@@ -31,7 +33,9 @@ const LoginForm: React.FC<Props> = ({
 
     return (
         <StyledForm noValidate>
-            <StyledTypography align="center" variant="h5" paragraph className={error ? 'error' : ''}>{login}</StyledTypography>
+            <StyledAlert variant="filled" severity="error" className={login ? 'error' : 'hidden'}>
+            {login}
+            </StyledAlert>
             <TextField
             variant="outlined"
             margin="normal"
@@ -73,7 +77,7 @@ const LoginForm: React.FC<Props> = ({
             <Grid container>
             <Grid item xs>
                 <Link href="#" variant="body2">
-                Forgot password? {login}
+                Forgot password?
                 </Link>
             </Grid>
             <Grid item>

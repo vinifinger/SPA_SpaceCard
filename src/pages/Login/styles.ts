@@ -11,3 +11,12 @@ export const StyledDivController = styled.div`
 export const StyledGrid = styled(Grid)`
     height: 100vh !important;
 `;
+
+export const StyledFormDiv = styled(Grid)`
+    position: absolute!important;
+    right: 5%!important;
+    bottom: 5%!important;
+    background-color: #a7a7a7c4!important;
+    border-radius: 10px!important;
+    height: 90%;
+`; 

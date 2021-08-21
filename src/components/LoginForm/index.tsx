@@ -1,8 +1,8 @@
-import { Box, Checkbox, FormControlLabel, Grid, Link, TextField } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Link } from '@material-ui/core';
 import Copyright from '../Copyright';
 import React, { useState } from 'react';
 
-import { StyledAlert, StyledButtonSubmit, StyledForm } from './styles'; 
+import { StyledAlert, StyledButtonSubmit, StyledForm, StyledTextField } from './styles'; 
 import api from '../../services/api';
 
 export interface Props {
@@ -36,26 +36,26 @@ const LoginForm: React.FC<Props> = ({
             <StyledAlert variant="filled" severity="error" className={login ? 'error' : 'hidden'}>
             {login}
             </StyledAlert>
-            <TextField
+            <StyledTextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Endereço de E-mail"
             name="email"
             autoComplete="email"
             autoFocus
             value={email}
             onChange={(event) => { setEmail(event.target.value) }}
             />
-            <TextField
+            <StyledTextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Senha"
             type="password"
             id="password"
             autoComplete="current-password"

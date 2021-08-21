@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import styled from "styled-components";
 import { Props } from '.';
@@ -21,4 +21,8 @@ export const StyledAlert = styled(Alert)`
     &.error {
         display: flex !important;
     }
+`;
+
+export const StyledTextField = styled(TextField)`
+    border-radius: 80px!important;
 `;

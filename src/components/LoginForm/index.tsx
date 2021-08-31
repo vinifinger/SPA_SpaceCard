@@ -37,7 +37,8 @@ const LoginForm: React.FC<Props> = ({
             {login}
             </StyledAlert>
             <StyledTextField
-            variant="outlined"
+            variant="filled"
+            className="inputRounded"
             margin="normal"
             required
             fullWidth
@@ -50,7 +51,7 @@ const LoginForm: React.FC<Props> = ({
             onChange={(event) => { setEmail(event.target.value) }}
             />
             <StyledTextField
-            variant="outlined"
+            variant="filled"
             margin="normal"
             required
             fullWidth
@@ -72,7 +73,7 @@ const LoginForm: React.FC<Props> = ({
             color="primary"
             onClick={handleLogin}
             >
-            Sign In
+            Entrar
             </StyledButtonSubmit>
             <Grid container>
             <Grid item xs>

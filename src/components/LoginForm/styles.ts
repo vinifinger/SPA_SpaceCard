@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const StyledForm = styled.form`
     width: 90%;
     margin-top: 8px;
-    border-top: 2px solid #fff;
+    border-top: 1.5px solid #fff;
 `;
 
 export const StyledButtonSubmit = styled(Button)`
@@ -29,7 +29,7 @@ export const StyledAlert = styled(Alert)`
 export const StyledTextField = styled(TextField)`
     &.inputRounded, .MuiOutlinedInput-root{
         /*border-radius: 80px!important;*/
-        background: #fff!important;
+        /*background: #fff!important;*/
     }
 
     &.MuiInputLabel-outline d{

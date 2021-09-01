@@ -1,11 +1,14 @@
-import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton, responsiveFontSizes, Snackbar } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Copyright from '../Copyright';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { StyledAlert, StyledButtonSubmit, StyledForm, StyledTextField } from './styles'; 
 import api from '../../services/api';
+import { useHistory } from 'react-router';
+import { Alert } from '@material-ui/lab';
+import AuthContext from '../../contexts/Auth';
 
 interface State {
     amount: string;
@@ -22,9 +25,12 @@ const LoginForm: React.FC<Props> = ({
     error
 }) => {
 
-    const [login, setLogin] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // const history = useHistory();
+    const failedMessage = 'Email e/ou senha inválido';
+    const [failed, setFailed] = useState(false);
+    const context = useContext(AuthContext);
 
     const [values, setValues] = React.useState<State>({
         amount: '',
@@ -43,24 +49,24 @@ const LoginForm: React.FC<Props> = ({
       };
 
     async function handleLogin() {
-
-        try {
-            const response = await api.post('/user/login', {email: email, password: password});
-            console.log(response);
-            if (response.status === 200){
-                setLogin(response.data.message);
-            }
-        } catch(err) { 
-            console.log(err);   
-            setLogin('Error');
-        }
+        context.Login(email, password);
     }
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setFailed(false);
+      };    
 
     return (
         <StyledForm noValidate>
-            <StyledAlert variant="filled" severity="error" className={login ? 'error' : 'hidden'}>
-            {login}
-            </StyledAlert>
+            <Snackbar open={failed} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error">
+                    {failedMessage}
+                </Alert>
+            </Snackbar>
             <StyledTextField
             variant="filled"
             margin="normal"

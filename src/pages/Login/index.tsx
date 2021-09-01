@@ -6,7 +6,6 @@ import LoginForm from '../../components/LoginForm';
 import LoginHeader from '../../components/LoginHeader';
 
 import { StyledDivController, StyledGrid, StyledFormDiv } from './styles';
-import api from '../../services/api';
 
 function Login() {
   return (

@@ -38,7 +38,7 @@ const UserList: React.FC = () => {
 
     async function searchUsers() {
 
-        const response = await api.get('/v1/user', { headers: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJoYXNoIjoiNWU5YTRlYWQtOWQ0Ni00ZWU0LWJlZDAtNzVkMjg3MDg2ZjY5IiwibmFtZSI6IkJyZW5kb3UiLCJzdXJuYW1lIjoiTGVpdGUiLCJlbWFpbCI6ImJyZW5kb3VmZWxpekBlbWFpbC5jb20iLCJmYWNlYm9vayI6ImZhY2Vib29rIiwibGlua2VkaW4iOiJsaW5rZWRpbiIsImRhdGVfaW5zZXJ0IjoiMjAyMS0wOC0wM1QyMjo1NToxMy4wMDBaIiwic3RhdHVzIjoxLCJ0d2l0dGVyIjoidHdpdHRlciIsInBhc3N3b3JkIjoiVTJGc2RHVmtYMS9HMmJVdlFPYXpzcDRTdmVZMXNhcnhJS3NxRlBORHBXQT0iLCJ0ZWxlcGhvbmUiOiJ0ZWxlZm9uZSIsImluc3RhZ3JhbSI6Imluc3RhZ3JhbSIsIndoYXRzYXBwIjoid2hhdHNhcHAiLCJ0ZWxlZ3JhbSI6InRlbGVncmFtIiwidGlrdG9rIjoidGlrdG9rIiwic3BvdGlmeSI6InNwb3RpZnkiLCJ5b3V0dWJlIjoieW91dHViZSIsIndpbGRjYXJkXzEiOiJ3aWxkY2FyZF8xIiwid2lsZGNhcmRfMiI6IndpbGRjYXJkXzIiLCJ3aWxkY2FyZF8zIjoid2lsZGNhcmRfMyIsImVuZF9zdGF0ZSI6ImVzdGFkbyIsImVuZF9jaXR5IjoiY2lkYWRlIiwiZW5kX251bWJlciI6Im51bWVybyIsImVuZF9kaXN0cmljdCI6ImJhaXJybyIsImVuZF9jZXAiOiJjZXAifSwiaWF0IjoxNjI4OTAxMzczLCJleHAiOjE2Mjg5MzAxNzN9.xpAL3OheKz0TP1G5H5ZLOkTJKDaj4iwwpT2kblUxU-E'}});
+        const response = await api.get('/v1/user');
         console.log(response.data.result);
         setUsers(response.data.result);
     }

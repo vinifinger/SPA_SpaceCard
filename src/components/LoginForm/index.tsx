@@ -63,15 +63,12 @@ const LoginForm: React.FC<Props> = ({
             </StyledAlert>
             <StyledTextField
             variant="filled"
-            className="inputRounded"
             margin="normal"
             required
             fullWidth
             id="email"
             label="Endereço de E-mail"
             name="email"
-            autoComplete="email"
-            autoFocus
             value={email}
             onChange={(event) => { setEmail(event.target.value) }}
             />
@@ -84,7 +81,6 @@ const LoginForm: React.FC<Props> = ({
             label="Senha"
             type={values.showPassword ? 'text' : 'password'}
             id="password"
-            autoComplete="current-password"
             value={password}
             onChange={(event) => { setPassword(event.target.value) }}
             InputProps={{

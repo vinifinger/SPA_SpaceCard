@@ -18,5 +18,4 @@ export const StyledFormDiv = styled(Grid)`
     bottom: 15%!important;
     background-color: #a7a7a7c4!important;
     border-radius: 8px!important;
-    /*height: 90%!important;*/
 `; 

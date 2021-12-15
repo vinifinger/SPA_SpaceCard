@@ -1,9 +1,10 @@
 import React, { Component, useContext } from 'react';
 import AuthContext from '../contexts/Auth';
-import { Redirect, Route, Switch } from 'react-router';
+import { Redirect, Route, Switch, useParams } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import LandingPage from '../pages/LandingPage';
 import Login from '../pages/Login';
+import UserPage from '../pages/User';
 
 function Routes() {
     const { isSigned } = useContext(AuthContext);
@@ -26,6 +27,7 @@ function Routes() {
     return (
         <BrowserRouter>
             <Switch>
+                <Route path="/:username" component={UserPage} />
                 <Route path="/login" component={Login} />
                 <Route exact path="/logged" component={LandingPage} />
                 <PrivateRoute path="/app" component={() => <h1>App</h1>} />

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import api from '../services/api';
 
 interface AuthContextData {
-    signed: boolean;
+    isSigned: boolean;
     user: object | null;
     Login(email: String, password: String): Promise<void>;
     Logout(): void;
@@ -46,7 +46,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: Boolean(user), user, Login, Logout }}>
+        <AuthContext.Provider value={{ isSigned: Boolean(user), user, Login, Logout }}>
         {children}
         </AuthContext.Provider>
     );

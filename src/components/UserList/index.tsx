@@ -30,7 +30,8 @@ interface User {
     end_city: string,
     end_number: string,
     end_district: string,
-    end_cep: string
+    end_cep: string,
+    imageUrl: string
 }
 
 const UserList: React.FC = () => {    
@@ -38,9 +39,9 @@ const UserList: React.FC = () => {
 
     async function searchUsers() {
 
-        const response = await api.get('/v1/user');
+        const response = await api.get('/v1/user?limit=100');
         console.log(response.data.result);
-        setUsers(response.data.result);
+        setUsers(response.data.result.data);
     }
 
     return ( 
@@ -53,10 +54,10 @@ const UserList: React.FC = () => {
             <StyledContainer>{
                 users.map((user: User) => {
                     return (
-                        <StyledCard>
+                        <StyledCard id={user.hash}>
                             <StyledCardMedia
-                                image={user.wildcard_1}
-                                title="Photo User"
+                                image={user.imageUrl}
+                                title={`${user.name} ${user.surname}`}
                             />
                             <StyledCardContent>
                                 <Typography gutterBottom variant="h5" component="h2">

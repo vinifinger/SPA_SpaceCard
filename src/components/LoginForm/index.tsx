@@ -27,7 +27,7 @@ const LoginForm: React.FC<Props> = ({
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const history = useHistory();
+    const history = useHistory();
     const failedMessage = 'Email e/ou senha inválido';
     const [failed, setFailed] = useState(false);
     const context = useContext(AuthContext);
@@ -49,7 +49,12 @@ const LoginForm: React.FC<Props> = ({
       };
 
     async function handleLogin() {
-        context.Login(email, password);
+        try {
+          context.Login(email, password);
+          history.push('/logged');
+        } catch (err) {
+          console.log(err);
+        }
     }
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {

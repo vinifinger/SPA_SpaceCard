@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import UserCard from '../../components/UserCard';
 import { User, UserValue }  from '../../interfaces/user';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 interface Params {
   username: string;
@@ -11,7 +11,6 @@ interface Params {
 function UserPage() {
   const [user, setUser] = useState<User>(UserValue);
   const { username } = useParams<Params>();
-  const history = useHistory();
 
     useEffect(() => {
       async function searchUser() {
@@ -27,7 +26,7 @@ function UserPage() {
       }
 
       searchUser();
-    }, []);
+    }, [username]);
   return (
     <div>
       <UserCard {...user}/>

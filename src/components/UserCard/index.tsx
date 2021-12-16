@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { User } from '../../interfaces/user';
 import { Typography } from '@material-ui/core';
 import { 
     Instagram,
-    LinkedCameraOutlined, LinkedIn, Telegram, Twitter, WhatsApp, YouTube
+    LinkedIn, 
+    Telegram, 
+    Twitter, 
+    WhatsApp, 
+    YouTube
 } from '@material-ui/icons';
 import { 
     StyledCard, 
@@ -14,17 +18,21 @@ import {
     StyledLinkLinkedIn,
     StyledParagraphy
 } from './styles';
-import { pink } from '@material-ui/core/colors';
+import { Skeleton } from '@material-ui/lab';
 
 
 const UserCard: React.FC<User> = (props) => {
     return (
         <StyledContainer>
             <StyledCard id={props.hash}>
-                <StyledCardMedia
-                    image={props.imageUrl}
-                    title={`${props.name} ${props.surname}`}
-                />
+                { props.imageUrl ?
+                    <StyledCardMedia
+                        image={props.imageUrl || 'https://www.instagram.com/p/CVOaS9lJZAY/'}
+                        title={`${props.name} ${props.surname}`}
+                    /> :
+                    <Skeleton variant="rect" animation="wave" width={395} height={350} />
+                } 
+                
                 <StyledCardContent>
                     <Typography gutterBottom variant="h5" component="h1" style={{ fontWeight: 500 }} align='center'>
                         {props.name} {props.surname}
@@ -34,7 +42,7 @@ const UserCard: React.FC<User> = (props) => {
                             props.whatsapp 
                             ? 
                                 <StyledLink href={props.whatsapp} target="_blank">
-                                    <WhatsApp fontSize='large' className='whatsAppIcon'/>
+                                    <WhatsApp fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
@@ -42,9 +50,9 @@ const UserCard: React.FC<User> = (props) => {
                         { 
                             props.linkedin 
                             ? 
-                                <StyledLinkLinkedIn href={props.linkedin} target="_blank">
-                                    <LinkedIn fontSize='large' className='linkedinIcon' />
-                                </StyledLinkLinkedIn> 
+                                <StyledLink href={props.linkedin} target="_blank">
+                                    <LinkedIn fontSize='large'  />
+                                </StyledLink> 
                             : 
                                 null
                         }
@@ -52,7 +60,7 @@ const UserCard: React.FC<User> = (props) => {
                             props.instagram 
                             ? 
                                 <StyledLink href={props.instagram} target="_blank">
-                                    <Instagram fontSize='large' className='instagramIcon'/>
+                                    <Instagram fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
@@ -61,7 +69,7 @@ const UserCard: React.FC<User> = (props) => {
                             props.twitter 
                             ? 
                                 <StyledLink href={props.twitter} target="_blank">
-                                    <Twitter fontSize='large' className='twitterIcon'/>
+                                    <Twitter fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
@@ -70,7 +78,7 @@ const UserCard: React.FC<User> = (props) => {
                             props.youtube 
                             ? 
                                 <StyledLink href={props.youtube} target="_blank">
-                                    <YouTube fontSize='large' className='youtubeIcon'/>
+                                    <YouTube fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
@@ -79,7 +87,7 @@ const UserCard: React.FC<User> = (props) => {
                             props.telegram 
                             ? 
                                 <StyledLink href={props.telegram} target="_blank">
-                                    <Telegram fontSize='large' className='telegramIcon'/>
+                                    <Telegram fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 import { User } from '../../interfaces/user';
-import {
-    Typography
-} from '@material-ui/core';
-import { StyledCard, StyledCardContent, StyledCardMedia, StyledContainer, StyledLink, StyledButton, StyledParagraphy } from './styles';
+import UserCard from '../../components/UserCard';
+import { StyledButton, StyledContainer, StyledParagraphy } from './styles';
 
 
 const UserList: React.FC = () => {    
@@ -27,29 +25,7 @@ const UserList: React.FC = () => {
             <StyledContainer>{
                 users.map((user: User) => {
                     return (
-                        <StyledCard id={user.hash}>
-                            <StyledCardMedia
-                                image={user.imageUrl}
-                                title={`${user.name} ${user.surname}`}
-                            />
-                            <StyledCardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {user.name}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    Sobrenome: {user.surname}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    <StyledLink href={user.email} target="_blank">E-mail</StyledLink>
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    <StyledLink href={user.instagram} target="_blank">Instagram</StyledLink>
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    <StyledLink href={user.twitter} target="_blank">Twitter</StyledLink>
-                                </Typography>
-                            </StyledCardContent>
-                        </StyledCard>
+                        <UserCard {...user} />
                     )
                 })
             }</StyledContainer>

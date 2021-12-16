@@ -1,11 +1,10 @@
-import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton, responsiveFontSizes, Snackbar } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton, Snackbar } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Copyright from '../Copyright';
 import React, { useContext, useState } from 'react';
 
-import { StyledAlert, StyledButtonSubmit, StyledForm, StyledTextField } from './styles'; 
-import api from '../../services/api';
+import { StyledButtonSubmit, StyledForm, StyledTextField } from './styles'; 
 import { useHistory } from 'react-router';
 import { Alert } from '@material-ui/lab';
 import AuthContext from '../../contexts/Auth';

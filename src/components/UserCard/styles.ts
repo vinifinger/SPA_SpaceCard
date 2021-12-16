@@ -4,7 +4,7 @@ import { Card, CardContent, CardMedia, Container, Link, Button } from '@material
 export const StyledCard = styled(Card)`
     width: 395px;
     margin-top: 2.4rem;
-    background-color: var(--primary) !important;
+    background-color: var(--tertiary) !important;
     height: 100%;
 `;
 
@@ -17,7 +17,7 @@ export const StyledContainer = styled(Container)`
 `;
 
 export const StyledCardContent = styled(CardContent)`
-    background-color: var(--background) !important;
+    background-color: var(--tertiary) !important;
     color: var(--mention-message);
 `
 

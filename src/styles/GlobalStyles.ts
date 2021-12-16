@@ -9,6 +9,7 @@ export default createGlobalStyle`
 
     html, body, #root {
         height: 100%;
+        background-color: var(--primary);
     }
 
     *, button, input {
@@ -19,9 +20,11 @@ export default createGlobalStyle`
     }
 
     :root {
-        --primary: #3f51b5;
-        --secondary: #2f3136;
-        --tertiary: rgb(32,34,37);
+        --primary: #AA5FE7;
+        --secondary: #001514;
+        --tertiary: #FFEF5C;
+
+
         --quaternary: #292b2f;
         --quinary: #393d42;
         --senary: #828386;
@@ -30,6 +33,8 @@ export default createGlobalStyle`
         --gray: #8a8c90;
         --chat-input: rgb(64,68,75);
         --symbol: #74777a;
+
+        --ashGray: #EDFFEC;
 
         --background: #f8f9fa;
     

@@ -27,8 +27,8 @@ function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/:username" component={UserPage} />
                 <Route path="/login" component={Login} />
+                <Route path="/:username" component={UserPage} />
                 <Route exact path="/logged" component={LandingPage} />
                 <PrivateRoute path="/app" component={() => <h1>App</h1>} />
                 <Route path="*" component={() => <h1>Page Not Found</h1>} />

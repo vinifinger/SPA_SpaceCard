@@ -2,32 +2,36 @@ import styled from 'styled-components';
 import { Card, CardContent, CardMedia, Container, Link, Button } from '@material-ui/core';
 
 export const StyledCard = styled(Card)`
-    max-width: 395px;
+    width: 395px;
     margin-top: 2.4rem;
     background-color: var(--primary) !important;
+    height: 100%;
 `;
 
 export const StyledContainer = styled(Container)`
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 16px;
-    align-content: space-between;
+    display: flex !important;
+    height: 100%;
+    justify-content: center;
+    color: var(--mention-detail);
+    align-items: center;
 `;
 
 export const StyledCardContent = styled(CardContent)`
-    background-color: var(--primary) !important;
-    color: var(--white);
+    background-color: var(--background) !important;
+    color: var(--mention-message);
 `
 
 export const StyledCardMedia = styled(CardMedia)`
-    height: 260px;
+    height: 350px;
     width: 100%;
     object-fit: cover;
     background-position: center center !important; 
 `
 
 export const StyledLink = styled(Link)`
-    color: var(--white) !important;
+    color: var(--mention-message) !important;
+    margin: 3px !important;
+    align-items: center;
 `
 
 export const StyledButton = styled(Button)`
@@ -38,4 +42,11 @@ export const StyledButton = styled(Button)`
 
 export const StyledParagraphy = styled.p`
     text-align: center;
+    justify-content: center !important;
+`
+
+export const StyledLinkLinkedIn = styled(Link)`
+    /* color: var(--linkedin) !important; */
+    margin: 3px !important;
+    align-items: center;
 `

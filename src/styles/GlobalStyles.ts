@@ -30,14 +30,49 @@ export default createGlobalStyle`
         --gray: #8a8c90;
         --chat-input: rgb(64,68,75);
         --symbol: #74777a;
+
+        --background: #f8f9fa;
     
         --notification: #f84a4b;
         --discord: #6e86d6;
         --mention-detail: #f9a839;
         --mention-message: #413f3f;
-    
+
+        --linkedin: #0e76a8;
+        --instagram: #fbad50;
+        --whatsApp: #25D366;
+        --twitter: #1DA1F2;
+        --youtube: #FF0000;
+        --telegram: #0088cc;
+
+
         --link: #5d80d6;
     
         --rocketseat: #6633cc;
     }
+
+    .linkedinIcon {
+        color: var(--linkedin);
+    }
+
+    .instagramIcon {
+        color: var(--mention-message);
+    }
+
+    .whatsAppIcon {
+        color: var(--whatsApp);
+    }
+
+    .twitterIcon {
+        color: var(--twitter);
+    }
+
+    .youtubeIcon {
+        color: var(--youtube);
+    }
+
+    .telegramIcon {
+        color: var(--telegram);
+    }
+
 `;

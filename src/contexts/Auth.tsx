@@ -41,7 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorage.setItem('onToken', response.data.result.token);
         api.defaults.headers.token = response.data.result.token;
         // console.log(response);
-        history.push('/logged');
+        history.push('/app');
     }
     
     async function LoginGoogle() {
@@ -55,7 +55,7 @@ export const AuthProvider: React.FC = ({ children }) => {
             localStorage.setItem('onToken', await user.user.getIdToken());
             api.defaults.headers.token = await user.user.getIdToken();
         }
-        history.push('/logged');
+        history.push('/app');
         // console.log(user);
     }
 

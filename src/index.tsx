@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-document.title = 'Space Card';
 ReactDOM.render(
   <React.StrictMode>
     <App />

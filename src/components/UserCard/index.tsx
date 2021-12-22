@@ -24,69 +24,69 @@ import { Skeleton } from '@material-ui/lab';
 const UserCard: React.FC<User> = (props) => {
     return (
         <StyledContainer>
-            <StyledCard id={props.hash}>
-                { props.imageUrl ?
+            <StyledCard id={props.user.hash}>
+                { props.user.imageUrl ?
                     <StyledCardMedia
-                        image={props.imageUrl || 'https://www.instagram.com/p/CVOaS9lJZAY/'}
-                        title={`${props.name} ${props.surname}`}
+                        image={props.user.imageUrl || 'https://www.instagram.com/p/CVOaS9lJZAY/'}
+                        title={`${props.user.name} ${props.user.surname}`}
                     /> :
                     <Skeleton variant="rect" animation="wave" width={395} height={350} />
                 } 
                 
                 <StyledCardContent>
                     <Typography gutterBottom variant="h5" component="h1" style={{ fontWeight: 500 }} align='center'>
-                        {props.name} {props.surname}
+                        {props.user.name} {props.user.surname}
                     </Typography>
                     <StyledParagraphy>
                         { 
-                            props.whatsapp 
+                            props.social_media.whatsapp 
                             ? 
-                                <StyledLink href={props.whatsapp} target="_blank">
+                                <StyledLink href={props.social_media.whatsapp} target="_blank">
                                     <WhatsApp fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
                         }
                         { 
-                            props.linkedin 
+                            props.social_media.linkedin 
                             ? 
-                                <StyledLink href={props.linkedin} target="_blank">
+                                <StyledLink href={props.social_media.linkedin} target="_blank">
                                     <LinkedIn fontSize='large'  />
                                 </StyledLink> 
                             : 
                                 null
                         }
                         { 
-                            props.instagram 
+                            props.social_media.instagram 
                             ? 
-                                <StyledLink href={props.instagram} target="_blank">
+                                <StyledLink href={props.social_media.instagram} target="_blank">
                                     <Instagram fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
                         }
                         { 
-                            props.twitter 
+                            props.social_media.twitter 
                             ? 
-                                <StyledLink href={props.twitter} target="_blank">
+                                <StyledLink href={props.social_media.twitter} target="_blank">
                                     <Twitter fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
                         }
                         { 
-                            props.youtube 
+                            props.social_media.youtube 
                             ? 
-                                <StyledLink href={props.youtube} target="_blank">
+                                <StyledLink href={props.social_media.youtube} target="_blank">
                                     <YouTube fontSize='large' />
                                 </StyledLink> 
                             : 
                                 null
                         }
                         { 
-                            props.telegram 
+                            props.social_media.telegram 
                             ? 
-                                <StyledLink href={props.telegram} target="_blank">
+                                <StyledLink href={props.social_media.telegram} target="_blank">
                                     <Telegram fontSize='large' />
                                 </StyledLink> 
                             : 

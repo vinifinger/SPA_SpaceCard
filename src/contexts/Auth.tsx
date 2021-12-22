@@ -1,74 +1,80 @@
 import React, { createContext, useEffect, useState } from 'react';
 import firebaseAuth from '../services/firebaseAuth';
 import api from '../services/api';
-import history from '../utils/history';
 interface AuthContextData {
     isSigned: boolean;
-    user: object | null;
     loading: boolean;
-    Login(email: String, password: String): Promise<void>;
+    LoginEmailAndPassword(email: string, password: string): Promise<void>;
     Logout(): void;
     LoginGoogle(): Promise<void>;
+    SignUpEmailAndPassword(email: string, password: string): Promise<void>;
 }
-   
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-
-    const [user, setUser] = useState<object | null>(null);
+    const [isSigned, setIsSigned] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const storagedUser = localStorage.getItem('onUser');
         const storagedToken = localStorage.getItem('onToken');
         
-        if (storagedToken && storagedUser) {
-          setUser(JSON.parse(storagedUser));
+        if (storagedToken) {
+          setIsSigned(true);
           api.defaults.headers.token = storagedToken;
         }
-
         setLoading(false);
     }, []);
 
-    async function Login(email: String, password: String) {
-        const response = await api.post('/user/login', {
-            email: email,
-            password: password,
+    async function LoginEmailAndPassword(email: string, password: string) {
+        const auth = firebaseAuth.getAuth();
+        await firebaseAuth.signInWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+            const user = userCredential.user;
+            localStorage.setItem('onToken', await user.getIdToken());
+            api.defaults.headers.token = await user.getIdToken();
+            setIsSigned(true);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            throw errorCode;
         });
+    }
 
-        setUser({name: response.data.result.name, email: response.data.result.email});
-        localStorage.setItem('onUser', JSON.stringify({name: response.data.result.name, email: response.data.result.email}));
-        localStorage.setItem('onToken', response.data.result.token);
-        api.defaults.headers.token = response.data.result.token;
-        // console.log(response);
-        history.push('/app');
+    async function SignUpEmailAndPassword(email: string, password: string) {
+        const auth = firebaseAuth.getAuth();
+        await firebaseAuth.createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+            const user = userCredential.user;
+            localStorage.setItem('onToken', await user.getIdToken());
+            api.defaults.headers.token = await user.getIdToken();
+            setIsSigned(true);
+        })
+        .catch((error) => {
+            console.log('sign up');
+            const errorCode = error.code;
+            throw errorCode;
+        });
     }
     
     async function LoginGoogle() {
         const auth = firebaseAuth.getAuth();
         const provider = new firebaseAuth.GoogleAuthProvider();
         const user = await firebaseAuth.signInWithPopup(auth, provider);
-        
+        console.log(user);
         if (user) {
-            setUser({name: user.user.displayName, email: user.user.email});
-            localStorage.setItem('onUser', JSON.stringify({name: user.user.displayName, email: user.user.email}));
             localStorage.setItem('onToken', await user.user.getIdToken());
             api.defaults.headers.token = await user.user.getIdToken();
+            setIsSigned(true);
         }
-        history.push('/app');
-        // console.log(user);
     }
 
     function Logout() {
-        setUser(null);
-
+        setIsSigned(false);
         sessionStorage.removeItem('onToken');
-        sessionStorage.removeItem('onUser');
-        history.push('/login');
     }
 
     return (
-        <AuthContext.Provider value={{ isSigned: Boolean(user), user, loading, Login, Logout, LoginGoogle }}>
+        <AuthContext.Provider value={{ isSigned, loading, LoginEmailAndPassword, Logout, LoginGoogle, SignUpEmailAndPassword }}>
         {children}
         </AuthContext.Provider>
     );

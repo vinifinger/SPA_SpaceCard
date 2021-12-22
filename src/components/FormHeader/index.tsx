@@ -1,14 +1,18 @@
 import React from 'react';
 import { StyledTypography } from './styles';
 
-const LoginHeader: React.FC = () => {
+interface Props {
+    title: string;
+}
+
+const FormHeader: React.FC<Props> = (props) => {
     return (
         <>
             <StyledTypography>
-                Login
+                {props.title}
             </StyledTypography>
         </>
     )
 };
 
-export default LoginHeader;
+export default FormHeader;

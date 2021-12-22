@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import LandingPage from '../pages/LandingPage';
 import Login from '../pages/Login';
 import UserPage from '../pages/User';
+import SignUp from '../pages/SignUp';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const { isSigned, loading } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function Routes() {
                     <h1>Space Card</h1>
                 </Route>
                 <Route path="/login" component={Login} />
+                <Route path="/signup" component={SignUp} />
                 <Route path="/user/:username" component={UserPage} />
                 <PrivateRoute path="/app" component={LandingPage} />
                 <Route path="/404">

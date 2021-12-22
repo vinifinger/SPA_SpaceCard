@@ -17,7 +17,7 @@ interface State {
   showPassword: boolean;
 }
 
-const LoginForm: React.FC = () => {
+const SignUpForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [failed, setFailed] = useState(false);
@@ -41,9 +41,9 @@ const LoginForm: React.FC = () => {
     event.preventDefault();
   };
 
-  async function handleLogin() {
+  async function handleSignUp() {
     try {
-      await context.LoginEmailAndPassword(email, password);
+      await context.SignUpEmailAndPassword(email, password);
       if (context.isSigned) 
           history.push('/app');
       } catch (err) {
@@ -111,19 +111,19 @@ const LoginForm: React.FC = () => {
         fullWidth
         variant="contained"
         color="primary"
-        onClick={handleLogin}
+        onClick={handleSignUp}
       >
       Entrar
       </StyledButtonSubmit>
       <Grid container>
       <Grid item xs>
-          <Link href="/forgot" variant="body2">
+          <Link href="#" variant="body2">
             {"Esqueceu a senha?"}
           </Link>
       </Grid>
       <Grid item>
-          <Link href="/signup" variant="body2">
-            {"Não tem uma conta? Criar conta"}
+          <Link href="/login" variant="body2">
+            {"Já tem uma conta? Logue"}
           </Link>
       </Grid>
       </Grid>
@@ -134,4 +134,4 @@ const LoginForm: React.FC = () => {
   )
 };
 
-export default LoginForm;
+export default SignUpForm;

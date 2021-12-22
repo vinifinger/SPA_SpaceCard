@@ -14,7 +14,6 @@ function Login() {
   async function handleLogin() {
     try {
       context.LoginGoogle();
-      // history.push('/logged');
     } catch (err) {
       console.log(err);
     }

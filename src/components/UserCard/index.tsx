@@ -15,7 +15,6 @@ import {
     StyledCardMedia, 
     StyledContainer, 
     StyledLink,
-    StyledLinkLinkedIn,
     StyledParagraphy
 } from './styles';
 import { Skeleton } from '@material-ui/lab';

@@ -5,7 +5,6 @@ import Copyright from '../Copyright';
 import React, { useContext, useState } from 'react';
 
 import { StyledButtonSubmit, StyledForm, StyledTextField } from './styles'; 
-import { useHistory } from 'react-router';
 import { Alert } from '@material-ui/lab';
 import AuthContext from '../../contexts/Auth';
 
@@ -26,7 +25,6 @@ const LoginForm: React.FC<Props> = ({
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
     const failedMessage = 'Email e/ou senha inválido';
     const [failed, setFailed] = useState(false);
     const context = useContext(AuthContext);
@@ -50,7 +48,6 @@ const LoginForm: React.FC<Props> = ({
     async function handleLogin() {
         try {
           context.Login(email, password);
-          history.push('/logged');
         } catch (err) {
           console.log(err);
         }

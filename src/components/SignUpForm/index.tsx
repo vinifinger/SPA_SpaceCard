@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton, Snackbar } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Link, InputAdornment, IconButton, Snackbar, Button } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Copyright from '../Copyright';
@@ -8,6 +8,7 @@ import { StyledButtonSubmit, StyledForm, StyledTextField } from './styles';
 import { Alert } from '@material-ui/lab';
 import AuthContext from '../../contexts/Auth';
 import { useHistory } from 'react-router-dom';
+import { Google } from '@mui/icons-material';
 
 interface State {
   amount: string;
@@ -43,8 +44,21 @@ const SignUpForm: React.FC = () => {
 
   async function handleSignUp() {
     try {
-      await context.SignUpEmailAndPassword(email, password);
-      if (context.isSigned) 
+      const isSigned = await context.SignUpEmailAndPassword(email, password);
+      if (isSigned) 
+          history.push('/app');
+      } catch (err) {
+      const error = err ? String(err) : 'Email e/ou senha inválido';
+      setFailed(true);
+      setFailedMessage(error);
+    }
+  }
+
+  async function handleGoogle() {
+    try {
+      const isSigned = await context.LoginGoogle();
+      console.log(isSigned);
+      if (isSigned) 
           history.push('/app');
       } catch (err) {
       const error = err ? String(err) : 'Email e/ou senha inválido';
@@ -61,76 +75,81 @@ const SignUpForm: React.FC = () => {
   };    
 
   return (
-    <StyledForm noValidate>
-      <Snackbar open={failed} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error">
-              {failedMessage}
-          </Alert>
-      </Snackbar>
-      <StyledTextField
-        variant="filled"
-        margin="normal"
-        required
-        fullWidth
-        id="email"
-        label="Endereço de E-mail"
-        name="email"
-        value={email}
-        onChange={(event) => { setEmail(event.target.value) }}
-      />
-      <StyledTextField
-        variant="filled"
-        margin="normal"
-        required
-        fullWidth
-        name="password"
-        label="Senha"
-        type={values.showPassword ? 'text' : 'password'}
-        id="password"
-        value={password}
-        onChange={(event) => { setPassword(event.target.value) }}
-        InputProps={{
-          endAdornment:(
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-          )
-        }}
-      />
-      <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
-      />
-      <StyledButtonSubmit
-        fullWidth
-        variant="contained"
-        color="primary"
-        onClick={handleSignUp}
-      >
-      Entrar
-      </StyledButtonSubmit>
-      <Grid container>
-      <Grid item xs>
-          <Link href="#" variant="body2">
-            {"Esqueceu a senha?"}
-          </Link>
-      </Grid>
-      <Grid item>
-          <Link href="/login" variant="body2">
-            {"Já tem uma conta? Logue"}
-          </Link>
-      </Grid>
-      </Grid>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </StyledForm>
+    <>
+      <Button variant='contained' startIcon={<Google />} onClick={handleGoogle}>
+          Entrar com o Google
+      </Button>
+      <StyledForm noValidate>
+        <Snackbar open={failed} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+                {failedMessage}
+            </Alert>
+        </Snackbar>
+        <StyledTextField
+          variant="filled"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Endereço de E-mail"
+          name="email"
+          value={email}
+          onChange={(event) => { setEmail(event.target.value) }}
+        />
+        <StyledTextField
+          variant="filled"
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Senha"
+          type={values.showPassword ? 'text' : 'password'}
+          id="password"
+          value={password}
+          onChange={(event) => { setPassword(event.target.value) }}
+          InputProps={{
+            endAdornment:(
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label='toggle password visibility'
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+            )
+          }}
+        />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <StyledButtonSubmit
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={handleSignUp}
+        >
+        Entrar
+        </StyledButtonSubmit>
+        <Grid container>
+        <Grid item xs>
+            <Link href="#" variant="body2">
+              {"Esqueceu a senha?"}
+            </Link>
+        </Grid>
+        <Grid item>
+            <Link href="/login" variant="body2">
+              {"Já tem uma conta? Logue"}
+            </Link>
+        </Grid>
+        </Grid>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </StyledForm>
+    </>
   )
 };
 

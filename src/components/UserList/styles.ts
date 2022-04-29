@@ -9,10 +9,10 @@ export const StyledCard = styled(Card)`
 `;
 
 export const StyledContainer = styled(Container)`
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 16px;
-    align-content: space-between;
+    width: auto !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-around
 `;
 
 export const StyledCardContent = styled(CardContent)`

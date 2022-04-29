@@ -23,17 +23,6 @@ const Header: React.FC = () => {
             <StyledTypography variant="h6" noWrap>
                 Space Card!
             </StyledTypography>
-            <nav>
-                <StyledLink variant="button" href="#">
-                Features
-                </StyledLink>
-                <StyledLink variant="button" href="#">
-                Enterprise
-                </StyledLink>
-                <StyledLink variant="button" href="#">
-                Support
-                </StyledLink>
-            </nav>
             <StyledButton onClick={handleLogout} variant="outlined">
                 Logout
             </StyledButton>

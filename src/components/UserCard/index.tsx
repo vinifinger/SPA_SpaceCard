@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../../interfaces/user';
+import { UserContent } from '../../interfaces/userContent';
 import { Typography } from '@material-ui/core';
 import { 
     Instagram,
@@ -20,7 +20,7 @@ import {
 import { Skeleton } from '@material-ui/lab';
 
 
-const UserCard: React.FC<User> = (props) => {
+const UserCard: React.FC<UserContent> = (props) => {
     return (
         <StyledContainer>
             <StyledCard id={props.user.hash}>

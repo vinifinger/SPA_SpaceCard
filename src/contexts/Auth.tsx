@@ -18,13 +18,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<firebaseAuth.User | null>(null);
 
     useEffect(() => {
-        firebaseAuth.getAuth().onAuthStateChanged((user) => {
+        firebaseAuth.getAuth().onAuthStateChanged(async (user) => {
             setUser(user);
 
-            const storagedToken = user?.getIdToken;        
+            const storagedToken = await user?.getIdToken();        
             if (storagedToken) {
-              setIsSigned(true);
-              api.defaults.headers.token = storagedToken;
+                console.log(storagedToken);
+                setIsSigned(true);
+                api.defaults.headers.token = storagedToken;
             }
             setLoading(false);
         });

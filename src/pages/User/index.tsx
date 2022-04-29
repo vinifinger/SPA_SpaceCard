@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import UserCard from '../../components/UserCard';
-import { User, UserValue }  from '../../interfaces/user';
+import { UserContent, UserContentValue }  from '../../interfaces/userContent';
 import { useParams } from 'react-router-dom';
 
 interface Params {
@@ -9,7 +9,7 @@ interface Params {
 }
 
 function UserPage() {
-  const [user, setUser] = useState<User>(UserValue);
+  const [user, setUser] = useState<UserContent>(UserContentValue);
   const { username } = useParams<Params>();
 
     useEffect(() => {

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Card, CardContent, CardMedia, Container, Link, Button } from '@material-ui/core';
+import { Stack } from '@mui/material';
 
 export const StyledCard = styled(Card)`
     max-width: 395px;
@@ -30,12 +31,11 @@ export const StyledLink = styled(Link)`
     color: var(--white) !important;
 `
 
-export const StyledButton = styled(Button)`
-    margin: 8px !important;
-    color: var(--white) !important;
-    background-color: var(--secondary) !important;
+export const StyledStack = styled(Stack)`
+    margin: 12px !important;
 `
 
 export const StyledParagraphy = styled.p`
-    text-align: center;
+    display: flex;
+    justify-content: center
 `
